@@ -1,5 +1,7 @@
+import { NextResponse } from "next/server";
+
 //handler for getting lyrics from musixmatch api using fetch
-export default async function handler(req, res) {
+export async function GET(req: Request, res: Response) {
   console.log("hello");
   let songTitle = "10,000 Reasons";
   let artistName = "Matt Redman";
@@ -16,10 +18,10 @@ export default async function handler(req, res) {
     const lyrics = data.message.body.lyrics.lyrics_body;
     console.log(lyrics);
     //return 200 response
-    res.status(200).json({ lyrics });
+    return NextResponse.json({ lyrics: lyrics }, { status: 200 });
   } catch (error) {
     console.error("Error fetching song lyrics:", error);
     //return 500 response
-    res.status(500).json({ error });
+    return NextResponse.json({ error: "Internal server error" }, { status: 500 });
   }
 }

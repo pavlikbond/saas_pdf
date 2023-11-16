@@ -9,7 +9,7 @@ const Lyrics = () => {
       const data = await response.json();
 
       // Assuming the structure of the response, you can access the lyrics
-      const lyrics = data.message.body.lyrics.lyrics_body;
+      const lyrics = data.lyrics;
       console.log(lyrics);
 
       return lyrics;
