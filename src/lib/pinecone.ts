@@ -47,7 +47,7 @@ export async function loadS3IntoPinecone(fileKey: string) {
   // Upgraded pinecone tier  needed to Namespace
   // const namespace = pineconeIndex.namespace(convertToAscii(fileKey));
   console.log("inserting vectors into pinecone");
-  const nameSpace = convertToAscii(fileKey);
+
   await pineconeIndex.upsert(vectors);
   // upgraded pinecone tier needed for Namespace
   // await namespace.upsert(vectors);
