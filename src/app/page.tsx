@@ -22,7 +22,7 @@ export default async function Home() {
             Join milions of students, researchers, and professionals to instantly answer questions and understand
             research with AI
           </p>
-          <Lyrics />
+
           <div className="w-full mt-4">
             {isAuth ? (
               <FileUpload />

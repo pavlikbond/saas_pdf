@@ -1,5 +1,7 @@
 import AWS from "aws-sdk";
 import fs from "fs";
+import os from "os";
+
 export async function downloadFromS3(file_key: string) {
   //obtain pdf, download and read from pdf
   try {
@@ -20,8 +22,11 @@ export async function downloadFromS3(file_key: string) {
     };
 
     const obj = await s3.getObject(params).promise();
-    const file_name = `/tmp/pdf-${Date.now()}.pdf`;
+
+    const file_name = `${os.tmpdir()}/pdf-${Date.now()}.pdf`; // use os.tmpdir() to get the temp directory
+
     fs.writeFileSync(file_name, obj.Body as Buffer);
+    return file_name;
   } catch (error) {
     console.log(error);
     return null;
